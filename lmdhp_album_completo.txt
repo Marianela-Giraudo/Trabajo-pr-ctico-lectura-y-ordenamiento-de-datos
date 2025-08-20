@@ -1,0 +1,8 @@
+track_number	name	id	danceability	energy	key	loudness	mode	speechiness	acousticness	instrumentalness	liveness	valence	tempo	duration_ms	time_signature
+7 	Ah Te Vi Entre Las Luces 	3uZfEOQOiAmHXDV02FZM4e 	0.321 	0.348 	11 	-14.407 	0 	0.0339 	0.0116 	0.803 	0.14 	0.0667 	113.101 	670507 	4 
+3 	Boletos, Pases Y Abonos 	7rXJAqUTO6aEYDEBBMw9ww 	0.567 	0.508 	7 	-14.62 	1 	0.0807 	0.000712 	0.623 	0.134 	0.48 	111.149 	391013 	4 
+1 	Bubulina 	3oemuYBDjVOwHOHfPfqRHr 	0.239 	0.185 	9 	-17.821 	0 	0.0352 	0.0569 	0.0806 	0.0985 	0.0382 	104.705 	335853 	4 
+2 	Como Mata el Viento Norte 	7BbpLe12HpkoZJcJs1A3SP 	0.451 	0.401 	0 	-14.756 	1 	0.0449 	0.0408 	0.000755 	0.183 	0.269 	87.484 	164440 	4 
+4 	No Puedo Verme Mas 	6mSqnp1KdNAV5mZcYOA92a 	0.404 	0.63 	2 	-12.743 	1 	0.0867 	0.0199 	0.0677 	0.201 	0.612 	140.147 	250293 	4 
+6 	Por Probar El Vino Y El Agua Salada 	5N51Oz7iz2i1Y3vsSutYJq 	0.33 	0.435 	7 	-13.622 	1 	0.0307 	0.0137 	0 	0.367 	0.543 	108.273 	200693 	4 
+5 	Rock And Roll 	6Fv1cm5OlaYFTBuyMh7UYU 	0.391 	0.487 	7 	-13.651 	1 	0.0468 	0.0117 	0.492 	0.104 	0.124 	151.877 	247147 	4 
