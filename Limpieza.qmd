@@ -1,5 +1,5 @@
 ---
-title: "TRABAJO PRÁCTICO GRUPAL: lectura y ordenamiento de datos"
+title: "TP GRUPAL: lectura y ordenamiento de datos"
 format: gfm
 editor: source
 author: "Soledad Ciancio _ Marianela Giraudo"
