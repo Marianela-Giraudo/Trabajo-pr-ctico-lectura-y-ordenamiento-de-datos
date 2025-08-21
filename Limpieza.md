@@ -1,7 +1,7 @@
 # TP GRUPAL: lectura y ordenamiento de datos
 Soledad Ciancio \_ Marianela Giraudo
 
-# Carga de paquetes
+# Carga de paquetes——————————————————–
 
 ``` r
 suppressPackageStartupMessages({
@@ -15,21 +15,27 @@ suppressPackageStartupMessages({
 })
 ```
 
-# Importación de tablas
+# Función para leer TSV sin mostrar mensajes ———————————-
 
 ``` r
 leer_tsv_silencioso <- function(ruta){
   read_tsv(ruta, show_col_types = FALSE)
 }
+```
 
-# Archivos
+# Importación de tablas—————————————————–
+
+``` r
 serugiran <- read_excel("datos_crudos/serugiran.xlsx")
 albumns <- read_excel("datos_crudos/albums.xlsx")
 suigeneris <- read.csv("datos_crudos/suigeneris.csv")
 porsuigieco <- read_delim("datos_crudos/porsuigieco.txt", delim = "|", show_col_types = FALSE)
 bbatj <- read_sas("datos_crudos/bbatj.sas7bdat")
+```
 
-# Álbums solista
+# Álbumes solista ———————————————————–
+
+``` r
 Clicsmodernos <- leer_tsv_silencioso("datos_crudos/solista/Clics Modernos.txt")
 Como_conseguir_chicas <- leer_tsv_silencioso("datos_crudos/solista/Como Conseguir Chicas.txt")
 Cuarenta_Obras_Fund_Vol1 <- leer_tsv_silencioso("datos_crudos/solista/Cuarenta Obras Fundamentales (Volumen 1).txt")
@@ -53,47 +59,37 @@ Unplugged <- leer_tsv_silencioso("datos_crudos/solista/Unplugged.txt")
 Yendo_de_la_cama_al_living <- leer_tsv_silencioso("datos_crudos/solista/Yendo De La Cama Al Living.txt")
 ```
 
-## Unión de las canciones del álbum “La máquina de hacer pájaros”
+# Unión del álbum “La máquina de hacer pájaros” ——————————
 
 ``` r
-ruta <- "datos_crudos/lmdhp/album_la_maquina_de_hacer_pajaros/"
-archivos <- list.files(path = ruta, pattern = "\\.txt$", full.names = TRUE)
+ruta_lmdhp <- "datos_crudos/lmdhp/album_la_maquina_de_hacer_pajaros/"
+archivos_lmdhp <- list.files(path = ruta_lmdhp, pattern = "\\.txt$", full.names = TRUE)
+
 leer_cancion <- function(archivo) {
   lineas <- readLines(archivo)
   campos <- str_split_fixed(lineas, ":\\s+", 2)
   datos <- as.data.frame(t(campos[, 2]), stringsAsFactors = FALSE)
   names(datos) <- campos[, 1]
-  return(datos)
+  datos
 }
-albun_la_maquina_de_hacer_pajaros <- map_dfr(archivos, leer_cancion)
-write_tsv(albun_la_maquina_de_hacer_pajaros, "lmdhp_album_completo.txt")
+
+album_la_maquina <- map_dfr(archivos_lmdhp, leer_cancion)
+
+write_tsv(album_la_maquina, "lmdhp_album_completo.txt")
 ```
 
-## Unión de las canciones del álbum “peliculas”:
+# Unión del álbum “Películas” ———————————————–
 
 ``` r
-ruta <- "datos_crudos/lmdhp/album_peliculas/"
+ruta_peliculas <- "datos_crudos/lmdhp/album_peliculas/"
+archivos_peliculas <- list.files(path = ruta_peliculas, pattern = "\\.txt$", full.names = TRUE)
 
-# Obtener la lista de archivos .txt
-archivos <- list.files(path = ruta, pattern = "\\.txt$", full.names = TRUE)
+album_peliculas <- map_dfr(archivos_peliculas, leer_cancion)
 
-# Función para leer cada archivo estilo YAML (clave: valor)
-leer_cancion <- function(archivo) {
-  lineas <- readLines(archivo)
-  campos <- str_split_fixed(lineas, ":\\s+", 2)
-  datos <- as.data.frame(t(campos[, 2]), stringsAsFactors = FALSE)
-  names(datos) <- campos[, 1]
-  return(datos)
-}
-# Leer y unir todos los archivos
-album_peliculas <- map_dfr(archivos, leer_cancion)
-
-
-# Guardar como archivo .txt separado por tabulaciones
 write_tsv(album_peliculas, "lmdhp_album_peliculas.txt")
 ```
 
-# Cambio de los nombres de las variables:
+# Cambio de nombres de variables ——————————————–
 
 ``` r
 serugiran <- rename(serugiran, 
@@ -116,21 +112,43 @@ serugiran <- rename(serugiran,
                     time_signature = compas)
 ```
 
-# Unión de todas las tablas:
+# Unión de todas las tablas————————————————–
 
 ``` r
 resultado <- rbindlist(
-  list(album_peliculas, albun_la_maquina_de_hacer_pajaros, bbatj, Clicsmodernos,
-       Como_conseguir_chicas, Cuarenta_Obras_Fund_Vol1, Cuarenta_Obras_Fund_Vol2, El_Aguante,
-       El_Album, Filosofia_Barata, Garcia_87, Garcia_el_mas_grande, Influencia,
-       La_Hija_de_la_lagrima, Musica_del_alma, Parte_de_la_religion, Piano_Bar,
-       porsuigieco, Random, Rock_and_Roll, Say_no_more, serugiran, suigeneris,
-       Tango, Terapia_intensiva, Unplugged, Yendo_de_la_cama_al_living),
+  list(
+   album_peliculas,
+    album_la_maquina,
+    bbatj,
+    Clicsmodernos,
+    Como_conseguir_chicas,
+    Cuarenta_Obras_Fund_Vol1,
+    Cuarenta_Obras_Fund_Vol2,
+    El_Aguante,
+    El_Album, Filosofia_Barata,
+    Garcia_87,
+    Garcia_el_mas_grande,
+    Influencia,
+    La_Hija_de_la_lagrima,
+    Musica_del_alma, 
+    Parte_de_la_religion,
+    Piano_Bar,
+    porsuigieco,
+    Random,
+    Rock_and_Roll,
+    Say_no_more, 
+    serugiran,
+    suigeneris,
+    Tango,
+    Terapia_intensiva,
+    Unplugged,
+    Yendo_de_la_cama_al_living
+   )    ,
   fill = TRUE
 )
 ```
 
-## Descarga del dataset final “Resultado.txt”
+# Guardar dataset final —————————————————–
 
 ``` r
 suppressMessages({
