@@ -130,10 +130,10 @@ resultado <- rbindlist(
 )
 ```
 
-## Descarga del dataset final “resultado.txt”
+## Descarga del dataset final “Resultado.txt”
 
 ``` r
 suppressMessages({
-  write_tsv(resultado, "resultado.txt")
+  write_tsv(resultado, "Resultado_.txt")
 })
 ```
