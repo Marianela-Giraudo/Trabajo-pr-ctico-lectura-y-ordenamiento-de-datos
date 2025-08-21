@@ -1,4 +1,4 @@
-# TRABAJO PRÁCTICO: lectura y ordenamiento de datos
+# TP GRUPAL: lectura y ordenamiento de datos
 Soledad Ciancio \_ Marianela Giraudo
 
 # Carga de paquetes
